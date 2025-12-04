@@ -27,11 +27,11 @@ class S2TILING:
     Attributes:
         CACHE_DIR (str): Path to the user's local cache directory (~/.cache/s2tiling).
         VALID_ATTRIBUTES (list): List of column names that can be queried
-                                 (e.g., 'Name', 'description', 'geometry').
+                                 (e.g., 'name', 'description', 'geometry').
     """
 
     CACHE_DIR = os.path.expanduser("~/.cache/s2tiling")
-    VALID_ATTRIBUTES = ["Name", "description", "geometry"]
+    VALID_ATTRIBUTES = ["name", "description", "geometry"]
 
     def __init__(self):
         """
@@ -52,6 +52,8 @@ class S2TILING:
 
         # Only keeping the 'Features' layer and relevant columns to save memory
         self.tiles = gpd.read_file(self.kml_path, driver="KML", layer="Features")
+
+        self.tiles.columns = self.tiles.columns.str.lower()
 
     def _extract_kml(self):
         """
@@ -78,7 +80,7 @@ class S2TILING:
                 ):
                     target.write(source.read())
 
-    def getAllTiles(self, lat, lon, attribute="Name"):
+    def getAllTiles(self, lat, lon, attribute="name"):
         """
         Retrieves all Sentinel-2 tiles covering the given coordinates.
 
@@ -86,16 +88,16 @@ class S2TILING:
             lat (float): Latitude in decimal degrees (WGS84).
             lon (float): Longitude in decimal degrees (WGS84).
             attribute (str or list, optional): The column(s) to return.
-                Defaults to 'Name' (the Tile ID).
-                Options: 'Name', 'description', 'geometry'.
+                Defaults to 'name' (the Tile ID).
+                Options: 'name', 'description', 'geometry'.
 
         Returns:
             list:
-                - If attribute is a string (e.g., 'Name'):
+                - If attribute is a string (e.g., 'name'):
                     A list of values (['33TYN', '34TCT']).
                   Sorted alphabetically (unless attribute is 'geometry').
                 - If attribute is a list:
-                    A list of dictionaries ([{'Name': '...', 'description': '...'}]).
+                    A list of dictionaries ([{'name': '...', 'description': '...'}]).
 
         Raises:
             ValueError: If an invalid attribute name is requested.
@@ -132,19 +134,19 @@ class S2TILING:
             except TypeError:
                 return values  # Return unsorted if types are mixed or not comparable
         else:
-            return matches.sort_values("Name")[attribute].to_dict(orient="records")
+            return matches.sort_values("name")[attribute].to_dict(orient="records")
 
-    def getFirstTile(self, lat, lon, attribute="Name"):
+    def getFirstTile(self, lat, lon, attribute="name"):
         """
-        Returns the first matching tile (alphabetically by Name).
+        Returns the first matching tile (alphabetically by name).
         Useful for consistent selection in overlapping areas.
         """
         tiles = self.getAllTiles(lat, lon, attribute)
         return tiles[0] if tiles else None
 
-    def getLastTile(self, lat, lon, attribute="Name"):
+    def getLastTile(self, lat, lon, attribute="name"):
         """
-        Returns the last matching tile (alphabetically by Name).
+        Returns the last matching tile (alphabetically by name).
         Useful for consistent selection in overlapping areas.
         """
         tiles = self.getAllTiles(lat, lon, attribute)

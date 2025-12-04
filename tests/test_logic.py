@@ -13,10 +13,10 @@ def s():
 
 
 def test_attribute_list(s):
-    result = s.getAllTiles(TEST_LAT, TEST_LON, attribute=["Name", "description"])
+    result = s.getAllTiles(TEST_LAT, TEST_LON, attribute=["name", "description"])
     assert isinstance(result, list)
     assert len(result) > 0
-    assert "Name" in result[0]
+    assert "name" in result[0]
     assert "description" in result[0]
 
 
