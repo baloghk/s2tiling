@@ -21,8 +21,8 @@ class S2TILING:
     a local cache of the KML data to ensure fast subsequent access.
 
     The grid is based on the Military Grid Reference System (MGRS). However, since
-    Sentinel tiles are 110x110km and create overlaps within the grid, this library offers a
-    solution to this problem.
+    Sentinel tiles are 110x110km and create overlaps within the grid, this library
+    offers a solution to this problem.
 
     Attributes:
         CACHE_DIR (str): Path to the user's local cache directory (~/.cache/s2tiling).
@@ -55,7 +55,7 @@ class S2TILING:
 
     def _extract_kml(self):
         """
-        Internal method to extract the KML file from the bundled Python package resource.
+        Internal method to extract the KML file from the bundled package resource.
         It handles nested directory structures within the ZIP file dynamically.
         """
         with importlib.resources.path("s2tiling.data", "s2_tiling.zip") as p:
@@ -91,9 +91,11 @@ class S2TILING:
 
         Returns:
             list:
-                - If attribute is a string (e.g., 'Name'): A list of values (e.g., ['33TYN', '34TCT']).
+                - If attribute is a string (e.g., 'Name'):
+                    A list of values (['33TYN', '34TCT']).
                   Sorted alphabetically (unless attribute is 'geometry').
-                - If attribute is a list: A list of dictionaries (e.g., [{'Name': '...', 'description': '...'}]).
+                - If attribute is a list:
+                    A list of dictionaries ([{'Name': '...', 'description': '...'}]).
 
         Raises:
             ValueError: If an invalid attribute name is requested.
@@ -105,13 +107,15 @@ class S2TILING:
         if isinstance(attribute, str):
             if attribute not in self.VALID_ATTRIBUTES:
                 raise ValueError(
-                    f"Invalid attribute '{attribute}'. Must be one of {self.VALID_ATTRIBUTES}."
+                    f"Invalid attribute '{attribute}'."
+                    f" Must be one of {self.VALID_ATTRIBUTES}."
                 )
         elif isinstance(attribute, list):
             invalid = [a for a in attribute if a not in self.VALID_ATTRIBUTES]
             if invalid:
                 raise ValueError(
-                    f"Invalid attributes {invalid}. Must be subset of {self.VALID_ATTRIBUTES}."
+                    f"Invalid attributes {invalid}. "
+                    f"Must be subset of {self.VALID_ATTRIBUTES}."
                 )
         else:
             raise ValueError("attribute must be a string or a list of strings")
