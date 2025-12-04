@@ -1,0 +1,9 @@
+Sentinel-2 Tile Grid Library
+Copyright (c) 2025 Balogh Károly <balogh2k4@gmail.com>
+
+This product includes data from the Copernicus Sentinel-2 mission, 
+produced by the European Space Agency (ESA) and the Copernicus program.
+
+The Sentinel-2 tiling grid (KML/MGRS data) is governed by the 
+Copernicus Sentinel Data Terms and Conditions.
+Source: https://sentinels.copernicus.eu/
