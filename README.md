@@ -56,16 +56,16 @@ all_tiles_id = s2t.getAllTiles(latitude, longitude)
 print(all_tiles_id)
 # Output: ['33TYN', '34TCT']
 
-# 4. Get specific metadata ('Name', 'description', 'geometry')
-# The default return value is the Tile ID ('Name'), but you can query 
+# 4. Get specific metadata ('name', 'description', 'geometry')
+# The default return value is the Tile ID ('name'), but you can query 
 # other attributes (e.g., 'geometry', 'description') or a list of them.
 first_tile_geometry = s2t.getFirstTile(latitude, longitude, 'geometry')
 print(first_tile_geometry)
 # Output: GEOMETRYCOLLECTION Z (POLYGON Z ((17.6715394264 47.8226075595 0, 19.1352584753 47.7791570714 0, 19.059029865 46.7936706873 0, 17.6221956555 46.8356557267 0, 17.6715394264 47.8226075595 0)), POINT Z (18.3787270654 47.30813912339999 0))
 
-all_tiles_data = s2t.getAllTiles(latitude, longitude, ['Name', 'geometry'])
+all_tiles_data = s2t.getAllTiles(latitude, longitude, ['name', 'geometry'])
 print(all_tiles_data)
-# [{'Name': '33TYN', 'geometry': <GEOMETRYCOLLECTION Z (POLYGON Z ((17.672 47.823 0, 19.135 47.779 0, 19.059 ...>}, {'Name': '34TCT', 'geometry': <GEOMETRYCOLLECTION Z (POLYGON Z ((18.328 47.823 0, 19.794 47.847 0, 19.817 ...>}]
+# [{'name': '33TYN', 'geometry': <GEOMETRYCOLLECTION Z (POLYGON Z ((17.672 47.823 0, 19.135 47.779 0, 19.059 ...>}, {'name': '34TCT', 'geometry': <GEOMETRYCOLLECTION Z (POLYGON Z ((18.328 47.823 0, 19.794 47.847 0, 19.817 ...>}]
 ```
 
 ## Features
