@@ -21,10 +21,10 @@ setup(
     long_description_content_type="text/markdown",
     author="Balogh Károly",
     author_email="balogh2k4@gmail.com",
-    url="https://github.com/balogh2k4/s2tiling",
+    url="https://github.com/baloghk/s2tiling",
     project_urls={
-        "Bug Reports": "https://github.com/balogh2k4/s2tiling/issues",
-        "Source": "https://github.com/balogh2k4/s2tiling",
+        "Bug Reports": "https://github.com/baloghk/s2tiling/issues",
+        "Source": "https://github.com/baloghk/s2tiling",
     },
     classifiers=[
         "Development Status :: 3 - Alpha",

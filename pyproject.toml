@@ -34,9 +34,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/balogh2k4/s2tiling"
-"Bug Reports" = "https://github.com/balogh2k4/s2tiling/issues"
-Source = "https://github.com/balogh2k4/s2tiling"
+Homepage = "https://github.com/baloghk/s2tiling"
+"Bug Reports" = "https://github.com/baloghk/s2tiling/issues"
+Source = "https://github.com/baloghk/s2tiling"
 
 [tool.setuptools.packages.find]
 where = ["."]
